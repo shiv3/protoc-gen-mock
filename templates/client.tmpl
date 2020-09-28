@@ -1,4 +1,4 @@
-{{ define "Client" }}{{ $clientName := .Name }}v
+{{ define "Client" }}{{ $clientName := .Name }}
 
 // Mock{{ $$clientName }} is the mock implementation of the {{ $$clientName }}. Use this to create mock services that
 // return random data. Useful in UI Testing.
@@ -14,7 +14,5 @@ func (Mock{{ $clientName }}) {{ .Name }}(context.Context, *{{ .Input }}) (*{{ .O
     return &res, nil
 }
 {{end}}
-
-
 {{ end }}
 
