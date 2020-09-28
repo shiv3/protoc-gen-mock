@@ -1,5 +1,7 @@
 module github.com/srikrsna/protoc-gen-mock
 
+go 1.15
+
 require (
 	github.com/bxcodec/faker v2.0.1+incompatible // indirect
 	github.com/gobuffalo/packr v1.13.7

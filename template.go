@@ -8,6 +8,8 @@ import (
 	"github.com/gobuffalo/packr"
 )
 
+//go:generate go run github.com/gobuffalo/packr/packr
+
 var T *template.Template
 
 func init() {
