@@ -14,4 +14,18 @@ func (Mock{{ $serviceName }}) {{ .Name }}(context.Context, *{{ .Input }}) (*{{ .
     return &res, nil
 }
 {{end}}
+
+{{ range .Methods -}}{{- /*gotype: github.com/srikrsna/protoc-gen-mock.methodModel*/ -}}
+// {{ .Name }} is mock implementation of the method {{ .Name }}
+func (Mock{{ $serviceName }}) {{ .Name }}(context.Context, *{{ .Input }}) (*{{ .Output }}, error) {
+    var res {{ .Output }}
+    if err := faker.FakeData(&res); err != nil {
+        return nil, err
+    }
+    return &res, nil
+}
+{{end}}
+
+
 {{ end }}
+

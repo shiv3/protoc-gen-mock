@@ -1,4 +1,6 @@
-module github.com/srikrsna/protoc-gen-mock
+module github.com/shiv3/protoc-gen-mock
+
+go 1.15
 
 require (
 	github.com/bxcodec/faker v2.0.1+incompatible // indirect

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/lyft/protoc-gen-star"
-	"github.com/lyft/protoc-gen-star/lang/go"
+	pgs "github.com/lyft/protoc-gen-star"
+	pgsgo "github.com/lyft/protoc-gen-star/lang/go"
 )
 
 type defaultGen struct {
@@ -33,6 +33,9 @@ func (m *defaultGen) Execute(targets map[string]pgs.File, packages map[string]pg
 			sm := serviceModel{
 				Name: m.Context.ServerName(service).String(),
 			}
+			cm := clientModel{
+				Name: m.Context.ClientName(service).String(),
+			}
 
 			for _, method := range service.Methods() {
 				mb := methodModel{
@@ -60,9 +63,11 @@ func (m *defaultGen) Execute(targets map[string]pgs.File, packages map[string]pg
 				}
 
 				sm.Methods = append(sm.Methods, mb)
+				cm.Methods = append(cm.Methods, mb)
 			}
 
 			fm.Services = append(fm.Services, sm)
+			fm.Clients = append(fm.Clients, cm)
 		}
 
 		if len(fm.Services) == 0 {
@@ -85,11 +90,17 @@ func (m *defaultGen) Execute(targets map[string]pgs.File, packages map[string]pg
 
 type fileModel struct {
 	Services []serviceModel
+	Clients  []clientModel
 	Package  string
 	Imports  []importModel
 }
 
 type serviceModel struct {
+	Name    string
+	Methods []methodModel
+}
+
+type clientModel struct {
 	Name    string
 	Methods []methodModel
 }
