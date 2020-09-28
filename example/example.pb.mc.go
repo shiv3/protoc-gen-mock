@@ -4,7 +4,6 @@ package example
 
 import (
 	"context"
-
 	"github.com/bxcodec/faker"
 )
 
