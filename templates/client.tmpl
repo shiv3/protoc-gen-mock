@@ -1,8 +1,8 @@
 {{ define "Client" }}{{ $clientName := .Name }}v
 
-// Mock{{ $serviceName }} is the mock implementation of the {{ $serviceName }}. Use this to create mock services that
+// Mock{{ $$clientName }} is the mock implementation of the {{ $$clientName }}. Use this to create mock services that
 // return random data. Useful in UI Testing.
-type Mock{{ $serviceName }} struct {}
+type Mock{{ $$clientName }} struct {}
 
 {{ range .Methods -}}{{- /*gotype: github.com/srikrsna/protoc-gen-mock.methodModel*/ -}}
 // {{ .Name }} is mock implementation of the method {{ .Name }}
