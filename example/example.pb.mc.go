@@ -4,12 +4,22 @@ package example
 
 import (
 	"context"
+
 	"github.com/bxcodec/faker"
 )
 
 // MockEchoServiceServer is the mock implementation of the EchoServiceServer. Use this to create mock services that
 // return random data. Useful in UI Testing.
 type MockEchoServiceServer struct{}
+
+// Echo is mock implementation of the method Echo
+func (MockEchoServiceServer) Echo(context.Context, *EchoRequest) (*EchoResponse, error) {
+	var res EchoResponse
+	if err := faker.FakeData(&res); err != nil {
+		return nil, err
+	}
+	return &res, nil
+}
 
 // Echo is mock implementation of the method Echo
 func (MockEchoServiceServer) Echo(context.Context, *EchoRequest) (*EchoResponse, error) {
